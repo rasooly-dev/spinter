@@ -11,7 +11,7 @@ class db_utils:
         cursor.execute(query)
         return cursor.fetchall()
     
-    def insert(self, criteria, questions, cloud_data, processed_analysis):
+    def insert(self, criteria={}, questions={}, cloud_data={}, processed_analysis={}):
         cursor = self.conn.cursor()
         cursor.execute('''INSERT INTO interviews (criteria, questions, cloud_data, processed_analysis) VALUES (?, ?, ?, ?)''', (criteria, questions, cloud_data, processed_analysis))
         self.conn.commit()
