@@ -63,6 +63,13 @@ function Landing() {
 
   const onSubmit = () => {
     //parse information into json
+    if (isFirstForm) {
+        //parse and send to api
+        //use firstQ, secondQ, thirdQ
+    } else {
+        //parse and send to api
+        //use firstQ2, secondQ4, listTSkill, listSoftSkill
+    }
   };
 
   return (
