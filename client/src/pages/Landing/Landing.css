@@ -1,0 +1,80 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 10% 10% auto 10%;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+  /*   border: 1px solid rgba(0, 0, 0, 0.8); */
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .center-grid {
+    grid-column: 2;
+    text-align: center;
+  }
+  .tab1 {
+    grid-row: 3;
+    padding: 2.5%;
+  }
+  .flexbox{
+    display: flex;
+    align-items: stretch;
+    background-color: #f1f1f1;
+  }
+  .flexbox>div {
+    background-color: DodgerBlue;
+    color: white;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+  .x {
+    background-color: red;
+  }
+  
+  /*  Styling */
+  #exTab1 .tab-content {
+    color : white;
+    background-color: #428bca;
+    padding : 5px 15px;
+  }
+  
+  #exTab2 h3 {
+    color : white;
+    background-color: #428bca;
+    padding : 5px 15px;
+  }
+  
+  /* remove border radius for the tab */
+  
+  #exTab1 .nav-pills > li > a {
+    border-radius: 0;
+  }
+  
+  /* change border radius for the tab , apply corners on top*/
+  
+  #exTab3 .nav-pills > li > a {
+    border-radius: 4px 4px 0 0 ;
+  }
+  
+  #exTab3 .tab-content {
+    color : white;
+    background-color: #428bca;
+    padding : 5px 15px;
+    border-radius: 0px 12px 12px 12px;
+  }
+  
+  .clearfix {
+    width: auto;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
