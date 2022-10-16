@@ -1,9 +1,13 @@
 import sqlite3
+import json
+import os
 
 class db_utils:
 
     def __init__(self):
-        self.conn = sqlite3.connect('spinter.db')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(BASE_DIR, "spinter.db")
+        self.conn = sqlite3.connect(db_path)
         print("Opened database successfully")
     
     def query(self, query):
@@ -13,7 +17,7 @@ class db_utils:
     
     def insert(self, criteria={}, questions={}, cloud_data={}, processed_analysis={}):
         cursor = self.conn.cursor()
-        cursor.execute('''INSERT INTO interviews (criteria, questions, cloud_data, processed_analysis) VALUES (?, ?, ?, ?)''', (criteria, questions, cloud_data, processed_analysis))
+        cursor.execute('''INSERT INTO interviews (criteria, questions, cloud_data, processed_analysis) VALUES (?, ?, ?, ?)''', (json.dumps(criteria), json.dumps(questions), json.dumps(cloud_data), json.dumps(processed_analysis)))
         self.conn.commit()
         return cursor.lastrowid
     

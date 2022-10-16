@@ -8,10 +8,10 @@ print("Opened database successfully")
 # Create the table
 conn.execute('''CREATE TABLE interviews
             (ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            criteria JSON,
-            questions JSON,
-            cloud_data JSON,
-            processed_analysis JSON
+            criteria TEXT,
+            questions TEXT,
+            cloud_data TEXT,
+            processed_analysis TEXT
             );''')
 print("Table created successfully")
 

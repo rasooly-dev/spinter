@@ -1,0 +1,19 @@
+POST http://localhost:5002/interview/create
+Content-Type: application/json
+
+{
+    "criteria": {
+        "job-title": "Software Engineer",
+        "job-description": "We are looking for a software engineer to join our team and help us build the next generation of our product. Machine learning experience is a plus.",
+        "qualifications": {
+            "technical-skills": ["Python", "C++", "Java", "SQL", "Git"],
+            "soft-skills": ["Teamwork", "Communication", "Leadership"]
+        },
+        "interview-questions":[],
+    }
+}
+
+###
+GET http://localhost:5002/interview/get
+Content-Type: application/json
+Cookie: interview_id=17

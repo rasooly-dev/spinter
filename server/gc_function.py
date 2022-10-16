@@ -3,7 +3,7 @@ from google.cloud import speech
 from google.cloud import storage
 from google.cloud import videointelligence
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'cred_key.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'server/cred_key.json'
 
 # Clients
 speech_client = speech.SpeechClient()
@@ -25,6 +25,8 @@ def transcript_audio(bucket_name, path_to_file):
 		print("Transcript: {}".format(result.alternatives[0].transcript))
 		with open('transcript.txt', 'w') as f:
 			f.write(result.alternatives[0].transcript)
+		
+		return (result.alternatives[0].transcript)
 
 	
 
@@ -79,6 +81,19 @@ def download_from_cloud(source_bucket_name, destination_file_name, source_blob_n
 			source_blob_name, source_bucket_name, destination_file_name
 		)
 	)
+
+# make sure destination blob name includes path
+def upload_blob_from_stream(bucket_name, file_obj, destination_blob_name):
+	bucket = storage_client.bucket(bucket_name)
+	blob = bucket.blob(destination_blob_name)
+
+	file_obj.seek(0)
+	blob.upload_from_file(file_obj)
+
+	print(
+        f"Stream data uploaded to {destination_blob_name} in bucket {bucket_name}."
+    )
+
 
 # def detect_faces returns something like this 
 """
@@ -164,15 +179,15 @@ def detect_faces(bucket_name, path_to_file):
 			return attributes
 				
 # Testing
-bucket_name = "main_data_bucket_demo"
-file_to_upload = './demo_bucket_file.mp3'
-cloud_blob_name = 'demo_intro'
-source_blob = './blob_downloads/download_test.mp3'
+#bucket_name = "main_data_bucket_demo"
+#file_to_upload = './demo_bucket_file.mp3'
+#cloud_blob_name = 'demo_intro'
+#source_blob = './blob_downloads/download_test.mp3'
 
-create_bucket(bucket_name)
-create_new_folder(bucket_name, 'data/id/')
-upload_to_cloud(bucket_name, file_to_upload, 'data/id/'+cloud_blob_name)
-transcript_audio(bucket_name, 'data/id/'+cloud_blob_name)
+#create_bucket(bucket_name)
+#create_new_folder(bucket_name, 'data/id/')
+#upload_to_cloud(bucket_name, file_to_upload, 'data/id/'+cloud_blob_name)
+#transcript_audio(bucket_name, 'data/id/'+cloud_blob_name)
 #download_from_cloud(bucket_name, source_blob, cloud_blob_name)
 
 #mp4_ci_test = './mp4_ci_test.mp4'
