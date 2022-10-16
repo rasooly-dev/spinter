@@ -21,6 +21,7 @@ def generate(_prompt):
     return response
 
 
+# returns JSON object with questions and answer pairs
 def generate_questions_and_answers(criteria):
     base_prompt = f"Job Title: {criteria['job-title']}\n"\
         f"Soft Skills: {criteria['qualifications']['soft-skills']}\n"\
@@ -44,12 +45,26 @@ def generate_questions_and_answers(criteria):
 
     question_answer_pairs = []
     for i in range(len(questions)):
-        question_answer_pairs.append(
-            {'question': questions[i], 'preferred-answer': answers[i]})
+        question_answer_pairs.append({'question': questions[i],
+                                      'preferred-answer': answers[i]})
 
     data = {'data': question_answer_pairs}
     return json.dumps(data)
 
 
-def generate_improved_answer(criteria, response, filler_words, common_words):
-    pass
+# returns improved answer as string
+def generate_improved_answer(criteria, response, qa_pair, common_words):
+    base_prompt = f"Job Title: {criteria['job-title']}\n"\
+        f"Soft Skills: {criteria['qualifications']['soft-skills']}\n"\
+        f"Technical Skills: {criteria['qualifications']['technical-skills']}\n"\
+        f"Job Description: {criteria['job-description']}\n"
+
+    prompt = base_prompt + "Given the above information, "\
+        f"the user was asked the following question: {qa_pair['question']} \n"\
+        f"Their original response was: {response} \n" \
+        f"A better response would have been: {qa_pair['preferred-answer']} \n" \
+        f"They also used the following common words too much: \n"
+    for word in common_words.keys():
+        prompt += f"{word} was used {common_words[word]} times.\n"
+    prompt += "Using the better response, improve the original response without too many common words: \n"
+    return generate(prompt).generations[0].text.strip()
