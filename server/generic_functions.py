@@ -1,5 +1,5 @@
 from moviepy.editor import *
-from collections import heapq
+import heapq
 
 #generic_filler_words = set('')
 
@@ -25,12 +25,12 @@ def mostCommonWords(text, n):
 	mostCommon = {}
 	for _ in range(n):
 		word = heapq.heappop(maxHeap)
-		mostCommon[word[1]]: -word[0]
+		mostCommon[word[1]] = -word[0]
 	return mostCommon
 
 
 # Testing
-mp4_file = './demo_video.mp4'
-mp3_file = './demo_audio.mp3'
+#mp4_file = './demo_video.mp4'
+#mp3_file = './demo_audio.mp3'
 # new mp3 file created at path, mp3_file
-mp3_from_mp4(mp4_file, mp3_file)
+#mp3_from_mp4(mp4_file, mp3_file)
