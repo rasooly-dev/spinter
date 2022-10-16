@@ -5,14 +5,14 @@ function InterviewPage() {
   const [interviewQuestion, setInterviewQuestion] = useState(
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in lacus metus. Aenean ipsum leo, varius quis orci ut, lobortis condimentum ipsum. Donec vel purus dui?"
   );
-  const [time, setTime] = useState(180);
+  const [time, setTime] = useState(5);
   useEffect(() => {
     //fetch from API
     //value = fetch()
     // setInterviewQuestion(value)
     const timer = setTimeout(() => {
       // conclude the interview and navigate to the following page
-    }, 180000);
+    }, 5000);
     const timer2 = setTimeout(() => {
       if (time > 0) {
         setTime(time - 1);
