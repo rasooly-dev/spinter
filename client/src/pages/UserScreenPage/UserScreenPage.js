@@ -1,10 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import './UserScreenPage.css';
 function UserScreenPage() {
-    const handleSubmit = (event) => {
-        //make a post request 
-        
-    };
+    const [selectedFile, setSelectedFile] = useState();
+    const [isSelected, setIsSelected] = useState(false);
+	const changeHandler = (event) => {
+		setSelectedFile(event.target.files[0]);
+		setIsSelected(true);
+	};
+
+	const handleSubmission = () => {
+        const formData = new FormData();
+
+		formData.append('File', selectedFile);
+        //fetch post request
+	};
     return (
     <div id="speechContainer">
     <h1> Please Upload new File</h1>
@@ -13,8 +22,8 @@ function UserScreenPage() {
         <br></br>
         <input type="submit" value="Transcribe" />
     </form> */}
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input type="file" name="file" accept="mp3"></input>
+    <form onSubmit={handleSubmission} encType="multipart/form-data">
+        <input type="file" name="file" accept="mp3" onChange={changeHandler}></input>
         <br></br>
         <input type="submit" value="Transcribe" />
     </form>
