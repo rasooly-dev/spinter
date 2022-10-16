@@ -22,7 +22,11 @@ def transcript_audio(bucket_name, path_to_file):
 	response = speech_client.recognize(config=config, audio=audio_file)
 
 	for result in response.results:
-		print("Transcript: {}".format(result.alternatives[0].transcript))	
+		print("Transcript: {}".format(result.alternatives[0].transcript))
+		with open('transcript.txt', 'w') as f:
+			f.write(result.alternatives[0].transcript)
+
+	
 
 # parameters
 # - bucket_name is a string the user wants to name bucket 
@@ -161,18 +165,18 @@ def detect_faces(bucket_name, path_to_file):
 				
 # Testing
 bucket_name = "main_data_bucket_demo"
-file_to_upload = './demo_bucket_file.mp4'
+file_to_upload = './demo_bucket_file.mp3'
 cloud_blob_name = 'demo_intro'
 source_blob = './blob_downloads/download_test.mp3'
 
 create_bucket(bucket_name)
 create_new_folder(bucket_name, 'data/id/')
-#upload_to_cloud(bucket_name, file_to_upload, 'data/id/'+cloud_blob_name)
-#transcript_audio(bucket_name, 'data/id/'+cloud_blob_name)
+upload_to_cloud(bucket_name, file_to_upload, 'data/id/'+cloud_blob_name)
+transcript_audio(bucket_name, 'data/id/'+cloud_blob_name)
 #download_from_cloud(bucket_name, source_blob, cloud_blob_name)
 
-mp4_ci_test = './mp4_ci_test.mp4'
-upload_to_cloud(bucket_name, mp4_ci_test, 'data/mp4_ci_test')
-attributes_analysis = detect_faces(bucket_name, 'data/mp4_ci_test')
+#mp4_ci_test = './mp4_ci_test.mp4'
+#upload_to_cloud(bucket_name, mp4_ci_test, 'data/mp4_ci_test')
+#attributes_analysis = detect_faces(bucket_name, 'data/mp4_ci_test')
 
-print(attributes_analysis)
+#print(attributes_analysis)
