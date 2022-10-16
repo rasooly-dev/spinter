@@ -1,13 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import Landing from './pages/Landing/Landing';
 
 import FileUploadPage from './components/GoogleCloudUpload/FileUploadPage'
 
 function App() {
   return (
-    <div className="App">
-      <FileUploadPage />
-    </div>
+<<<<<<< backend
+=======
+    <Landing/>
+>>>>>>> main
   );
 }
 
