@@ -25,7 +25,6 @@ function Landing() {
         console.log(listTSkill)
     }
 
-  const handleChange = () => {};
   const handleChange1 = (event) => {
     setFirstQ(event.target.value);
   };
@@ -61,14 +60,16 @@ function Landing() {
     }
   };
 
-  const onSubmit = () => {
+  const handleSubmit = () => {
     //parse information into json
     if (isFirstForm) {
-        //parse and send to api
+        //parse and send a post req to api
         //use firstQ, secondQ, thirdQ
+
     } else {
-        //parse and send to api
+        //parse and send post req to api
         //use firstQ2, secondQ4, listTSkill, listSoftSkill
+        
     }
   };
 
@@ -102,7 +103,7 @@ function Landing() {
               <div className="tab-content clearfix">
                 {isFirstForm ? (
                   <div className="tab-pane active" id="1b">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea1">
                           Question 1{" "}
@@ -113,6 +114,7 @@ function Landing() {
                           rows="3"
                           value={firstQ}
                           onChange={handleChange1}
+                          name="q1"
                         ></textarea>
                       </div>
                       <div className="form-group">
@@ -125,6 +127,7 @@ function Landing() {
                           rows="3"
                           value={secondQ}
                           onChange={handleChange2}
+                          name="q2"
                         ></textarea>
                       </div>
                       <div className="form-group">
@@ -137,6 +140,7 @@ function Landing() {
                           rows="3"
                           value={thirdQ}
                           onChange={handleChange3}
+                          name="q3"
                         ></textarea>
                       </div>
                       <button
@@ -208,7 +212,7 @@ function Landing() {
                 //     </form>
                 //   </div>
                 <div className="tab-pane active" id="1b">
-                <form>
+                <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="exampleFormControlTextarea1">
                       Job Title{" "}
@@ -220,6 +224,7 @@ function Landing() {
                       rows="3"
                       value={firstQ2}
                       onChange={handleChange1p2}
+                      name="jobtitle"
                     ></input>
                   </div>
                   
@@ -237,6 +242,7 @@ function Landing() {
                       rows="3"
                       value={secondQ2}
                       onChange={handleChange2p2}
+                      name="softskills"
                     ></input>
                   </div>
 
@@ -263,6 +269,7 @@ function Landing() {
                       rows="3"
                       value={thirdQ2}
                       onChange={handleChange3p2}
+                      name="technicalskills"
                     ></input>
                   </div>
                   <button
@@ -283,6 +290,7 @@ function Landing() {
                       rows="3"
                       value={fourthQ2}
                       onChange={handleChange4p2}
+                      ame="jobdesc"
                     ></input>
                   </div>
 
