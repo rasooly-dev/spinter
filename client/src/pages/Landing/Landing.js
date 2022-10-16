@@ -1,5 +1,6 @@
 import React, { useState , setTheArray} from "react";
 import "./Landing.css";
+import logo from "../../img/logo.png";
 function Landing() {
   const [firstQ, setFirstQ] = useState("");
   const [secondQ, setSecondQ] = useState("");
@@ -76,6 +77,9 @@ function Landing() {
   return (
     <div className="grid-container">
       {/* <!--   <div className="grid-item"></div> --> */}
+      <div>
+        <img className="logo" src={logo}/>
+      </div>
       <div className="center-grid">
         <h1>Splinter</h1>
       </div>
@@ -88,12 +92,12 @@ function Landing() {
           <div className="center-grid">
             <div id="exTab3">
               <ul className="nav nav-pills">
-                <li className="active">
+                <li className={isFirstForm ? "active" : null}>
                   <a href="#1b" data-toggle="tab" onClick={handleToggle1}>
                     Preselect
                   </a>
                 </li>
-                <li>
+                <li className={!isFirstForm ? "active" : null}>
                   <a href="#2b" data-toggle="tab" onClick={handleToggle2}>
                     Generate
                   </a>
