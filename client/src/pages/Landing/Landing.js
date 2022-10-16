@@ -65,11 +65,11 @@ function Landing() {
     if (isFirstForm) {
         //parse and send a post req to api
         //use firstQ, secondQ, thirdQ
-
+        console.log("lmao")
     } else {
         //parse and send post req to api
         //use firstQ2, secondQ4, listTSkill, listSoftSkill
-        
+        console.log("no")
     }
   };
 
@@ -212,7 +212,7 @@ function Landing() {
                 //     </form>
                 //   </div>
                 <div className="tab-pane active" id="1b">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="exampleFormControlTextarea1">
                       Job Title{" "}
@@ -247,6 +247,7 @@ function Landing() {
                   </div>
 
                   <button
+                    type="button"
                     onClick={handleSoftSkill}
                     className="btn btn-success mb-2 submit-button"
                     value={secondQ2}
@@ -273,6 +274,7 @@ function Landing() {
                     ></input>
                   </div>
                   <button
+                    type="button"
                     onClick={handleTSkill}
                     className="btn btn-success mb-2 submit-button"
                     value={thirdQ2}
